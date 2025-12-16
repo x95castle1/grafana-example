@@ -37,7 +37,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Number of times a TCP socket’s listen queue completely filled up and had to drop a connection. Useful for determining if SYN cookie protection is affecting performance.\n\nThis counts the number of times the listen queue for a socket overflowed. When a server socket is listening for connections, it maintains a queue (called the accept queue or listen queue) of completed connections waiting to be accepted by the application. When this queue fills up and new connections arrive, those connections can't be queued and this counter increments. This typically happens when an application isn't calling accept() fast enough to process incoming connections.",
       "fieldConfig": {
@@ -69,7 +69,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -116,7 +115,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "editorMode": "code",
@@ -132,7 +131,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This counts connection attempts that were dropped due to various listen-related issues. This includes cases where the listen queue is full (which would also increment ListenOverflows), but can also include other scenarios like memory allocation failures when trying to handle new connections, or other resource constraints during the connection establishment process.\n\nListenOverflows is specifically about queue overflow situations\nListenDrops is broader and includes overflows plus other drop reasons\n\nListenDrops >= ListenOverflows",
       "fieldConfig": {
@@ -164,7 +163,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -211,12 +209,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "gemfire_tcpExtListenDrops{job=\"$gemfire_job_name\"}",
@@ -233,7 +231,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Counts of tcpExtSynCookies sent",
       "fieldConfig": {
@@ -265,7 +263,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -312,7 +309,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "editorMode": "code",
@@ -328,7 +325,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Counts of tcpExtSynCookies received.",
       "fieldConfig": {
@@ -360,7 +357,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -407,12 +403,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "gemfire_tcpExtSynCookiesRecv{}",
@@ -442,7 +438,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This chart displays the throughput of all 'Get' operations performed across the entire cache.\nRIGHT Axis (RED): The 'Get' operation requests by the remote Client applications.\nLEFT Axis (BLUE): The 'Get' operation requests by the remote Client applications and distributed get operations.",
       "fieldConfig": {
@@ -474,7 +470,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -519,12 +514,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_getRequests{job=\"$gemfire_job_name\"}[$__rate_interval]))",
@@ -536,7 +531,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_gets{job=\"$gemfire_job_name\"}[$__rate_interval]))",
@@ -553,7 +548,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Average Get Latency presents the total time taken by all 'Get' operations performed across the cluster divided by the number of all 'Get' operations performed across the cluster to get an average time taken per 'Get' operation in the system.",
       "fieldConfig": {
@@ -585,7 +580,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -631,12 +625,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_getTime{job=\"$gemfire_job_name\"}[$__rate_interval])) / sum(rate(gemfire_gets{job=\"$gemfire_job_name\"}[$__rate_interval]))",
@@ -652,7 +646,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Ratio of cache hits to total data requests ",
       "fieldConfig": {
@@ -715,12 +709,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(gemfire_gets{group=\"servers\", instance=~\"RegionStats.*|cachePerfStats\", job=\"$gemfire_job_name\"})\n/\nsum(gemfire_gets{group=\"servers\", instance=~\"RegionStats.*|cachePerfStats\", job=\"$gemfire_job_name\"} + \n    gemfire_misses{group=\"servers\", instance=~\"RegionStats.*|cachePerfStats\", job=\"$gemfire_job_name\"})\n* 100",
@@ -736,7 +730,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This metric represents the rate of Get operations across the entire cluster that resulted in a matched key per second.",
       "fieldConfig": {
@@ -786,12 +780,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_getRequests{job=\"$gemfire_job_name\"}[$__rate_interval]))",
@@ -807,7 +801,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This chart represents the rate of Get operations that resulted in a miss, where the key that was requested was not in the cache per second.",
       "fieldConfig": {
@@ -867,12 +861,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_misses{job=\"$gemfire_job_name\"}[$__rate_interval]))\n",
@@ -888,7 +882,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Average Put Latency presents the total time taken by all 'Put' operations performed across the cluster divided by the number of all 'Put' operations performed across the cluster to get an average time taken per 'Put' operation in the system.",
       "fieldConfig": {
@@ -920,7 +914,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -963,7 +956,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": false,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": true
                 }
               }
@@ -991,12 +984,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_putTime{job=\"$gemfire_job_name\"}[$__rate_interval])) / sum(rate(gemfire_puts{job=\"$gemfire_job_name\"}[$__rate_interval]))",
@@ -1012,7 +1005,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This chart displays the throughput of all 'Put' operations performed across the entire cache.\nRIGHT Axis (RED): The 'Put' operation requests by the remote Client applications.\nLEFT Axis (BLUE): The 'Put' operation requests by the remote Client applications and distributed put operations.",
       "fieldConfig": {
@@ -1044,7 +1037,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1089,12 +1081,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_putRequests{job=\"$gemfire_job_name\"}[$__rate_interval]))",
@@ -1107,7 +1099,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_puts{job=\"$gemfire_job_name\"}[$__rate_interval]))",
@@ -1124,7 +1116,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "RED (RIGHT AXIS): Function Execution Queue size. If this size continues to grow, then there is an issue with one of the members that should be addressed.\nBLUE (LEFT AXIS): A calculated rate based on functionExecutionCalls-functionExecutionsCompleted, which provide the output of failed function execution calls per second.",
       "fieldConfig": {
@@ -1156,7 +1148,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1229,12 +1220,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1247,7 +1238,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1265,7 +1256,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "For Each Server Member, this chart represents the rate of requests of put operations received per second on a specific member.",
       "fieldConfig": {
@@ -1297,7 +1288,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1340,7 +1330,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "editorMode": "code",
@@ -1356,7 +1346,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "For persistent regions that hold data in memory and on disk, we provide this chart to ensure that these values stay. Issue(s): If entries on disk exceed the number that is on the VM, the ability to recover from disk is at risk. Action(s): To prevent future recovery failures, scale up and increase the memory available to servers.",
       "fieldConfig": {
@@ -1388,7 +1378,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1433,12 +1422,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "(sum by (instance) (gemfire_entriesOnlyOnDisk{group=\"servers\", job=\"$gemfire_job_name\"}))- (sum by (instance) (gemfire_entriesInVM{group=\"servers\", job=\"$gemfire_job_name\"}))",
@@ -1454,7 +1443,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "The GemFire message queue represents the size of the operations, such as Get, Put, Destroy, and so on, subscription queue.",
       "fieldConfig": {
@@ -1486,7 +1475,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1539,12 +1527,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "gemfire_messageQueueSize{group=\"servers\", job=\"$gemfire_job_name\"}",
@@ -1560,7 +1548,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "The GemFire query rate is the number of cache client operations query requests performed per second.",
       "fieldConfig": {
@@ -1641,7 +1629,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum by(member) (rate(gemfire_queryRequests{group=\"servers\", job=\"$gemfire_job_name\"}[$__rate_interval])) ",
@@ -1657,7 +1645,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "The average query time is computed by taking the total time of all query requests (processQueryTime) and dividing it by the number of requests (queryRequests), to get an average time spent on any given query.",
       "fieldConfig": {
@@ -1747,7 +1735,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "gemfire_processQueryTime{group=\"servers\", job=\"$gemfire_job_name\"} / (gemfire_queryRequests{group=\"servers\", job=\"$gemfire_job_name\"} > 0) or vector(0)",
@@ -1763,7 +1751,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This table shows the type, name, and entry count for each region in the cache.\nFor convenience, we have summarized the Partitioned regions with the Partition Total rows",
       "fieldConfig": {
@@ -1827,7 +1815,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum by (region, data_policy, member, custom_type) (label_replace(gemfire_cache_entries{job=\"$gemfire_job_name\", data_policy!~\".*REPLICATE.*\" }, \"custom_type\", \"PARTITIONED\", \"\", \"\"))\n",
@@ -1840,7 +1828,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum by (region, data_policy, custom_type) (label_replace(gemfire_cache_entries{job=\"$gemfire_job_name\", data_policy=~\".*PARTITION.*\" }, \"custom_type\", \"PARTITION TOTAL\", \"\", \"\"))",
@@ -1943,7 +1931,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "JVM Heap Usage across all cluster members",
       "fieldConfig": {
@@ -2025,7 +2013,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "gemfire_jvm_memory_used_bytes{area='heap', member_type='server', id!='Par Eden Space', id!='Par Survivor Space', job=\"$gemfire_job_name\"} / gemfire_jvm_memory_max_bytes{area='heap', member_type='server', id!='Par Eden Space', id!='Par Survivor Space', job=\"$gemfire_job_name\"} * 100",
@@ -2050,7 +2038,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Disk utilization by member in the cluster. The percentage remaining is computed by utilizing the statistics gathered by GemFire from the underlying system. Some operating systems (like macOS) do not emit these metrics and will cause this graph to be empty.\n\nGemFire stats: volumeFreeSpace, volumeSize\n\nIssue(s): Disks are needed for proper operation or restoration of a cluster, logging, and persisted data either from overflow or persistent regions. There may be a degradation of service or possible data loss if disks on any member get full.\n\nAction(s): Evaluate log size and consider a change to a rolling scheme if not already in place.\nConsider modifying persistent data or overflow triggers.\nConsider adding a new member, scaling horizontally.\nConsider increasing the default storage capacity of members, scaling vertically.",
       "fieldConfig": {
@@ -2111,7 +2099,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "(gemfire_volumeSize{category=\"DiskDirStatistics\", group=\"servers\", job=\"$gemfire_job_name\"} - gemfire_volumeFreeSpace{category=\"DiskDirStatistics\", group=\"servers\", job=\"$gemfire_job_name\"}) / gemfire_volumeSize{category=\"DiskDirStatistics\", group=\"servers\", job=\"$gemfire_job_name\"} * 100",
@@ -2128,7 +2116,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "CPU utilization across all nodes",
       "fieldConfig": {
@@ -2210,7 +2198,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "gemfire_cpuActive{job=\"$gemfire_job_name\"}",
@@ -2227,7 +2215,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This chart displays a line for each server in the cluster and represents the number of external clients connected to that member.\n\nGemFire stat: currentClientConnections\n\nIssue(s): A high number of connections on one server may indicate improper data balance or load balancing by the system.\n\nAction(s): Consider running a rebalance command.\nConsider evaluating hashing algorithms for entry keys of partitioned data.",
       "fieldConfig": {
@@ -2309,7 +2297,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "gemfire_currentClientConnections{job=\"$gemfire_job_name\"}",
@@ -2326,7 +2314,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Delay duration measures the actual time (in ms) the GemFire statistics sampler slept. It calculates the difference between when it went to sleep and when it woke up to sample. Sample time shows how long it took to collect the sample after it woke up.\n\nIssue(s): A heavy load on the server would cause the delayDuration and sampleTime to be different than a typical 1 second measurement. The bigger this number gets, the more likely it is that the server will be under performing and possibly fail.\n\nAction(s): Consider scaling out to handle the increased load if it is encountered.",
       "fieldConfig": {
@@ -2421,7 +2409,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "Delay duration measures the actual time (in ms) the GemFire statistics sampler slept. It calculates the difference between when it went to sleep and when it woke up to sample. Sample time shows how long it took to collect the sample after it woke up.\n\nIssue(s): A heavy load on the server would cause the delayDuration and sampleTime to be different than a typical 1 second measurement. The bigger this number gets, the more likely it is that the server will be under performing and possibly fail.\n\nAction(s): Consider scaling out to handle the increased load if it is encountered.",
       "fieldConfig": {
@@ -2501,7 +2489,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "clamp_min(gemfire_replyWaitsInProgress{job=\"$gemfire_job_name\"}, 0) ",
@@ -2527,7 +2515,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -2617,7 +2605,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "GemFire monitors the AbandonedReadRequests from the cache server.\n\nIssue(s): If this number increases at a fast rate, there might be an issue with the network or the client app.\n\nAction(s): Consider investigating any new client app recently deployed against this cluster.\n\nConsider investigating any new networking changes within this environment.",
       "fieldConfig": {
@@ -2683,7 +2671,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2769,7 +2757,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This chart shows all of the Gateway Receivers for this cluster and the rate of bytes/second that are sent (red) or received (blue).\nIssue(s):\nIf your WAN connected clusters fail, then you will only see a red line as the rate of received (blue) bytes will be zero.\nAction(s):\nInvestigate the connected cluster to better understand why you are no longer receiving bytes from it.",
       "fieldConfig": {
@@ -2864,7 +2852,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_receivedBytes{job=\"$gemfire_job_name\",category=\"GatewayReceiverStatistics\"}[$__rate_interval]))",
@@ -2877,7 +2865,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "expr": "sum(rate(gemfire_sentBytes{job=\"$gemfire_job_name\",category=\"GatewayReceiverStatistics\"}[$__rate_interval]))",
@@ -2894,7 +2882,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "${prometheus}"
       },
       "description": "This graph displays the rate (messages/second) at which a Gateway Sender is able to send events to a WAN connected cluster.",
       "fieldConfig": {
@@ -2975,7 +2963,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "${prometheus}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2993,7 +2981,7 @@
   ],
   "preload": false,
   "refresh": "5s",
-  "schemaVersion": 42,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
@@ -3048,5 +3036,5 @@
   "timezone": "",
   "title": "Gemfire Management Console",
   "uid": "cemnqjctymcqof",
-  "version": 1
+  "version": 10
 }
